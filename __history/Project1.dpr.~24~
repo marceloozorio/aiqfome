@@ -1,0 +1,32 @@
+program Project1;
+
+uses
+  Vcl.Forms,
+  aiqfome in 'aiqfome.pas' {Form1},
+  HttpSend in 'HttpSend.pas' {HttpSend},
+  ssl_openssl_lib in 'ssl_openssl_lib.pas' {ssl_openssl_lib},
+  ssl_openssl in 'ssl_openssl.pas' {ssl_openssl},
+  synsock in 'synsock.pas' {synsock},
+  synacode in 'synacode.pas' {synacode},
+  synafpc in 'synafpc.pas' {synafpc},
+  synautil in 'synautil.pas' {synautil},
+  synaip in 'synaip.pas' {synaip},
+  blcksock in 'blcksock.pas' {blcksock},
+  REST_API in 'REST_API.pas' {REST_API},
+  XmlManager in 'XmlManager.pas' {XmlManager},
+  uJson in 'uJson.pas' {uJson},
+  StringFunctions in 'StringFunctions.pas' {StringFunctions},
+  DateHelper in 'DateHelper.pas' {DateHelper},
+  SerializableObjects in 'SerializableObjects.pas' {SerializableObjects},
+  JsonManager in 'JsonManager.pas' {JsonManager};
+
+
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.
