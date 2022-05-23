@@ -112,6 +112,7 @@ type
     FHHTTPConn: THttpClient;
   public
     constructor Create(AList : TListView; AImageList: TImageList); reintroduce;
+    destructor Destroy;
     procedure Execute; override;
     procedure Print;
   end;
@@ -228,15 +229,23 @@ begin
   FHHTTPConn.timeout:=-1;
 end;
 
+destructor TAtualizar.Destroy;
+begin
+  FListaPokemons.Free;
+  FResponse.Free;
+  FHHTTPConn.Free;
+  inherited;
+end;
+
 procedure TAtualizar.Execute;
 begin
   inherited;
 
   FListaPokemons.FPokemons.Clear;
 
-  FResponse:=FHHTTPConn.httpGet('http://pokeapi.glitch.me/v1/pokemon/6');
+  FResponse:=FHHTTPConn.httpGet('https://pokeapi.glitch.me/v1/pokemon/6');
 
-  if not FResponse.hasError then begin
+  if FResponse.code = 200 then begin
     FListaPokemons:=TListaPokemons(TJsonManager.deserialize('{"pokemons": ' + FResponse.contentToString + '}',TListaPokemons));
 
     Synchronize(Self.Print);

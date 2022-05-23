@@ -234,7 +234,10 @@ begin
 
   FListaPokemons.FPokemons.Clear;
 
-  FResponse:=FHHTTPConn.httpGet('http://pokeapi.glitch.me/v1/pokemon/6');
+  FResponse:=FHHTTPConn.httpGet('https://pokeapi.glitch.me/v1/pokemon/6');
+
+
+  showmessage(inttostr(FResponse.code));
 
   if not FResponse.hasError then begin
     FListaPokemons:=TListaPokemons(TJsonManager.deserialize('{"pokemons": ' + FResponse.contentToString + '}',TListaPokemons));
